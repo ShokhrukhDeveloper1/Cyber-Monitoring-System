@@ -1,6 +1,7 @@
 ﻿using CyberMonitoring.API.Data;
 using CyberMonitoring.API.Models;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -28,10 +29,29 @@ namespace CyberMonitoring.API.Controllers
         [HttpPost]
         public ActionResult<AttackLog> CreateAttack([FromBody] AttackLog attack)
         {
+            var oneMinuteAgo = DateTime.UtcNow.AddMinutes(-1);
+
+            int attackCount = _context.AttackLogs
+                .Count(a => a.IpAddress == attack.IpAddress && a.DetectedAt >= oneMinuteAgo);
+
+            if (attackCount >= 3)
+            {
+                attack.IsBlocked = true;
+
+                var alert = new Alert
+                {
+                    Message = $"Shubhali faoliyat aniqlandi. IP: {attack.IpAddress}",
+                    CreatedAt = DateTime.UtcNow,
+                    IsRead = false
+                };
+
+                _context.Alerts.Add(alert);
+            }
+
             _context.AttackLogs.Add(attack);
             _context.SaveChanges();
 
-            return CreatedAtAction(nameof(GetAttacks), new { id = attack.Id }, attack);
+            return Ok(attack);
         }
     }
 }
