@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Linq;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CyberMonitoring.API.Controllers
 {
@@ -50,6 +51,13 @@ namespace CyberMonitoring.API.Controllers
                 .ToList();
 
             return Ok(recentAttacks);
+        }
+
+        [Authorize(Roles = "Admin")]
+        [HttpGet("secure-test")]
+        public IActionResult SecureTest()
+        {
+            return Ok("You are authorized as Admin");
         }
     }
 }
