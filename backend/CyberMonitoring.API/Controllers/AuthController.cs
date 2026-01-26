@@ -1,4 +1,5 @@
 ﻿using CyberMonitoring.API.Data;
+using CyberMonitoring.API.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
@@ -7,6 +8,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace CyberMonitoring.API.Controllers
 {
@@ -16,23 +18,39 @@ namespace CyberMonitoring.API.Controllers
     {
         private readonly AppDbContext _context;
         private readonly IConfiguration _config;
+        private readonly ISecurityLogService _logService;
 
-        public AuthController(AppDbContext context, IConfiguration config)
+        public AuthController(AppDbContext context, IConfiguration config, ISecurityLogService logService)
         {
             _context = context;
             _config = config;
+            _logService = logService;
         }
 
         [HttpPost("login")]
-        public IActionResult Login(string username, string password)
+        public async Task<IActionResult> Login(string username, string password)
         {
-            var user = _context.Users.FirstOrDefault(x => x.Username == username);
-            if (user == null)
-                return Unauthorized("User not found");
+            var user = _context.Users
+                .FirstOrDefault(u => u.Username == username && u.PasswordHash == password);
 
-            // Demo uchun oddiy tekshiruv
-            if (user.PasswordHash != password)
-                return Unauthorized("Invalid password");
+            if (user == null)
+            {
+                await _logService.LogAsync(
+                    "LOGIN_FAILED",
+                    "Invalid username or password",
+                    username,
+                    HttpContext.Connection.RemoteIpAddress?.ToString()
+                );
+
+                return Unauthorized("Invalid credentials");
+            }
+
+            await _logService.LogAsync(
+                "LOGIN_SUCCESS",
+                "User logged in successfully",
+                user.Username,
+                HttpContext.Connection.RemoteIpAddress?.ToString()
+            );
 
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.UTF8.GetBytes(_config["Jwt:Key"]);

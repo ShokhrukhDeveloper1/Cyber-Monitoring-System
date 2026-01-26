@@ -1,0 +1,8 @@
+﻿CREATE TABLE SecurityLogs (
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    EventType NVARCHAR(50) NOT NULL,
+    Message NVARCHAR(500) NOT NULL,
+    Username NVARCHAR(100),
+    IPAddress NVARCHAR(50),
+    CreatedAt DATETIME NOT NULL DEFAULT GETDATE()
+);

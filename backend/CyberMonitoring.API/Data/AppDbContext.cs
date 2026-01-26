@@ -13,6 +13,7 @@ namespace CyberMonitoring.API.Data
         public DbSet<User> Users { get; set; }
         public DbSet<AttackLog> AttackLogs { get; set; }
         public DbSet<Alert> Alerts { get; set; }
+        public DbSet<SecurityLog> SecurityLogs { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
