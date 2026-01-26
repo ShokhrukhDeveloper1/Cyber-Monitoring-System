@@ -1,4 +1,5 @@
 using CyberMonitoring.API.Data;
+using CyberMonitoring.API.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -84,6 +85,8 @@ namespace CyberMonitoring.API
                     )
                 };
             });
+
+            services.AddScoped<ISecurityLogService, SecurityLogService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -97,7 +100,7 @@ namespace CyberMonitoring.API
             }
 
             app.UseHttpsRedirection();
-
+            app.UseMiddleware<ExceptionLoggingMiddleware>();
             app.UseRouting();
 
             app.UseAuthentication();
