@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cyber Monitoring | Login</title>
+
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body class="login-page">
+
+  <!-- Login Card -->
+  <div class="login-card">
+
+    <!-- Icon -->
+    <div class="login-icon">
+      🔒
+    </div>
+
+    <h2>System Login</h2>
+
+    <!-- Username -->
+    <input type="text" placeholder="Username">
+
+    <!-- Password -->
+    <input type="password" placeholder="Password">
+
+    <!-- Login Button -->
+    <button class="btn btn-primary" onclick="goDashboard()">
+      Login
+    </button>
+
+  </div>
+
+  <script>
+    function goDashboard() {
+      window.location.href = "pages/dashboard.html";
+    }
+  </script>
+
+</body>
+</html>
