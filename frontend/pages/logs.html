@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>System Logs</title>
+
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+
+<div class="admin-layout">
+
+  <!-- ========== SIDEBAR ========== -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      🛡️ <span>Cyber</span>Monitor
+    </div>
+    <ul class="sidebar-menu">
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="users.html">Users</a></li>
+      <li><a href="attack-events.html">Attack Events</a></li>
+      <li><a href="blocked-ips.html">Blocked IPs</a></li>
+      <li><a href="logs.html" class="active">Logs</a></li>
+      <li><a href="reports.html">Reports</a></li>
+    </ul>
+  </aside>
+
+  <!-- ========== MAIN CONTENT ========== -->
+  <div class="main-content">
+
+    <!-- TOPBAR -->
+    <header class="topbar">
+      <h1>System Logs</h1>
+      <div class="topbar-right">
+        🔔
+        <div class="topbar-user dropdown">
+          <span id="userMenuBtn">Admin ⌄</span>
+
+          <div class="dropdown-menu" id="userDropdown">
+            <a href="#" onclick="logout()">🚪 Logout</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- PAGE BODY -->
+    <div class="page-content">
+
+      <!-- 🔍 SEARCH -->
+      <input
+        type="text"
+        id="searchInput"
+        class="search-input"
+        placeholder="Search logs..."
+      >
+
+      <div class="card">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Log ID</th>
+              <th>User</th>
+              <th>Action</th>
+              <th>Timestamp</th>
+              <th>Hash (SHA256)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>101</td>
+              <td>Admin</td>
+              <td>Login Success</td>
+              <td>2026-01-26 10:30</td>
+              <td class="hash">a8f3c9b7e1c4d29f7a4c9a01b9f3e2d7</td>
+            </tr>
+            <tr>
+              <td>102</td>
+              <td>Admin</td>
+              <td>IP Blocked</td>
+              <td>2026-01-26 10:35</td>
+              <td class="hash">f9b4a2e7c81d93a4f27c1b3e8d90a6c4</td>
+            </tr>
+            <tr>
+              <td>103</td>
+              <td>System</td>
+              <td>Attack Detected</td>
+              <td>2026-01-26 10:40</td>
+              <td class="hash">d71e9c2a4f8b3e1a7c09f2b9d6e4a5c1</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script src="../js/ui.js"></script>
+</body>
+</html>

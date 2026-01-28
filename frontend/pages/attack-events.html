@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Attack Events</title>
+
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+
+<div class="admin-layout">
+
+  <!-- ========== SIDEBAR ========== -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      🛡️ <span>Cyber</span>Monitor
+    </div>
+    <ul class="sidebar-menu">
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="users.html">Users</a></li>
+      <li><a href="attack-events.html" class="active">Attack Events</a></li>
+      <li><a href="blocked-ips.html">Blocked IPs</a></li>
+      <li><a href="logs.html">Logs</a></li>
+      <li><a href="reports.html">Reports</a></li>
+    </ul>
+  </aside>
+
+  <!-- ========== MAIN CONTENT ========== -->
+  <div class="main-content">
+
+    <!-- TOPBAR -->
+    <header class="topbar">
+      <h1>Attack Events</h1>
+      <div class="topbar-right">
+        🔔
+        <div class="topbar-user dropdown">
+          <span id="userMenuBtn">Admin ⌄</span>
+
+          <div class="dropdown-menu" id="userDropdown">
+            <a href="#" onclick="logout()">🚪 Logout</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- PAGE BODY -->
+    <div class="page-content">
+
+      <!-- SEARCH -->
+      <div class="card" style="margin-bottom:16px;">
+        <!-- 🔍 SEARCH INPUT -->
+        <input
+          type="text"
+          id="searchInput"
+          class="search-input"
+          placeholder="Search by IP or attack type..."
+          style="width:100%; padding:10px; border-radius:6px; background:#020617; border:1px solid var(--border-color); color:var(--text-main);"
+        >
+      </div>
+
+      <!-- TABLE -->
+      <div class="card">
+        <table class="table" id="attackTable">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Attack Type</th>
+              <th>IP Address</th>
+              <th>Time</th>
+              <th>Description</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>Brute Force</td>
+              <td>192.168.1.10</td>
+              <td>10:32</td>
+              <td>8 failed login attempts</td>
+              <td><span class="badge badge-danger">Blocked</span></td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>SQL Injection</td>
+              <td>192.168.1.15</td>
+              <td>10:45</td>
+              <td>Suspicious payload detected</td>
+              <td><span class="badge badge-danger">Alert</span></td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>Normal Activity</td>
+              <td>192.168.1.20</td>
+              <td>11:00</td>
+              <td>No threat detected</td>
+              <td><span class="badge badge-success">Safe</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ========== SEARCH SCRIPT ========== -->
+<script>
+  const searchInput = document.getElementById("searchInput");
+  const rows = document.querySelectorAll("#attackTable tbody tr");
+
+  searchInput.addEventListener("keyup", () => {
+    const value = searchInput.value.toLowerCase();
+
+    rows.forEach(row => {
+      row.style.display = row.innerText.toLowerCase().includes(value)
+        ? ""
+        : "none";
+    });
+  });
+</script>
+
+<script src="../js/ui.js"></script>
+</body>
+</html>
