@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Users Management</title>
+
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+
+<div class="admin-layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      🛡️ <span>Cyber</span>Monitor
+    </div>
+    <ul class="sidebar-menu">
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="users.html" class="active">Users</a></li>
+      <li><a href="attack-events.html">Attack Events</a></li>
+      <li><a href="blocked-ips.html">Blocked IPs</a></li>
+      <li><a href="logs.html">Logs</a></li>
+      <li><a href="reports.html">Reports</a></li>
+    </ul>
+  </aside>
+
+  <!-- MAIN -->
+  <div class="main-content">
+
+    <!-- TOPBAR -->
+    <header class="topbar">
+      <h1>Users</h1>
+      <div class="topbar-right">
+        🔔
+        <div class="topbar-user dropdown">
+          <span id="userMenuBtn">Admin ⌄</span>
+
+          <div class="dropdown-menu" id="userDropdown">
+            <a href="#" onclick="logout()">🚪 Logout</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- PAGE CONTENT -->
+    <div class="page-content">
+
+      <!-- 🔍 SEARCH INPUT -->
+      <input
+        type="text"
+        id="searchInput"
+        class="search-input"
+        placeholder="Search user..."
+      >
+
+      <!-- USERS TABLE -->
+      <div class="card">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Username</th>
+              <th>Role</th>
+              <th>Status</th>
+              <th>Last Login</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>admin</td>
+              <td><span class="badge badge-success">Admin</span></td>
+              <td><span class="badge badge-success">Active</span></td>
+              <td>2026-01-26 10:40</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>user1</td>
+              <td><span class="badge">User</span></td>
+              <td><span class="badge badge-danger">Blocked</span></td>
+              <td>2026-01-25 18:12</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>user2</td>
+              <td><span class="badge">User</span></td>
+              <td><span class="badge badge-success">Active</span></td>
+              <td>2026-01-26 09:05</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script src="../js/ui.js"></script>
+</body>
+</html>

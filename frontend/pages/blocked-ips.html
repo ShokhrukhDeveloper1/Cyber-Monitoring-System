@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Blocked IPs</title>
+
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+
+<div class="admin-layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      🛡️ <span>Cyber</span>Monitor
+    </div>
+    <ul class="sidebar-menu">
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="users.html">Users</a></li>
+      <li><a href="attack-events.html">Attack Events</a></li>
+      <li><a href="blocked-ips.html" class="active">Blocked IPs</a></li>
+      <li><a href="logs.html">Logs</a></li>
+      <li><a href="reports.html">Reports</a></li>
+    </ul>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <div class="main-content">
+
+    <!-- TOPBAR -->
+    <header class="topbar">
+      <h1>Blocked IP Addresses</h1>
+      <div class="topbar-right">
+        🔔
+        <div class="topbar-user dropdown">
+          <span id="userMenuBtn">Admin ⌄</span>
+
+          <div class="dropdown-menu" id="userDropdown">
+            <a href="#" onclick="logout()">🚪 Logout</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- PAGE BODY -->
+    <div class="page-content">
+
+      <!-- 🔍 SEARCH -->
+      <input
+        type="text"
+        id="searchInput"
+        class="search-input"
+        placeholder="Search ip..."
+      >
+
+      <div class="card">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>IP Address</th>
+              <th>Blocked At</th>
+              <th>Expires At</th>
+              <th>Reason</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>192.168.1.45</td>
+              <td>2026-01-26 09:10</td>
+              <td>2026-01-26 12:10</td>
+              <td>Brute Force Attack</td>
+              <td><span class="badge badge-danger">Active</span></td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>153.196.1.101</td>
+              <td>2026-01-25 18:30</td>
+              <td>2026-01-26 00:30</td>
+              <td>Multiple Failed Logins</td>
+              <td><span class="badge badge-success">Expired</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script src="../js/ui.js"></script>
+</body>
+</html>

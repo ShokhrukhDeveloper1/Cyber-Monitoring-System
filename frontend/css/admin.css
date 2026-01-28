@@ -1,0 +1,205 @@
+/* ========== ADMIN LAYOUT ========== */
+
+.admin-layout {
+  display: flex;
+  min-height: 100vh;
+  background-color: var(--bg-main);
+}
+
+/* ========== SIDEBAR ========== */
+
+.sidebar {
+  width: 240px;
+  background-color: #020617;
+  border-right: 1px solid var(--border-color);
+  padding: 20px;
+}
+
+.sidebar-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 30px;
+}
+
+.sidebar-logo span {
+  color: var(--color-primary);
+}
+
+.sidebar-menu {
+  list-style: none;
+}
+
+.sidebar-menu li {
+  margin-bottom: 6px;
+}
+
+.sidebar-menu a {
+  display: flex;
+  align-items: center;
+  padding: 10px 12px;
+  border-radius: 6px;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+/* ✅ hover to‘g‘rilandi */
+.sidebar-menu a:hover {
+  background-color: #111827;
+  color: var(--text-main);
+}
+
+.sidebar-menu a.active {
+  background-color: var(--color-primary);
+  color: white;
+}
+
+/* ========== MAIN AREA ========== */
+
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ========== TOPBAR ========== */
+
+.topbar {
+  height: 60px;
+  background-color: var(--bg-card);
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+
+.topbar h1 {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.topbar-user {
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+/* ========== PAGE CONTENT ========== */
+
+.page-content {
+  padding: 20px;
+}
+
+/* ========== STATS GRID ========== */
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.stat-card {
+  text-align: center;
+  transition: 0.2s ease;
+}
+
+/* ⭐ hover effekt */
+.stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.4);
+}
+
+.stat-title {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+.stat-value {
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.stat-value.danger {
+  color: var(--color-danger);
+}
+
+.stat-value.success {
+  color: var(--color-success);
+}
+
+/* ========== RESPONSIVE ========== */
+
+@media (max-width: 900px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    width: 200px;
+  }
+}
+
+.hash {
+  font-family: monospace;
+  font-size: 12px;
+  color: #93C5FD;
+  word-break: break-all;
+}
+
+.search-input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 16px;
+  border-radius: 6px;
+  background-color: #020617;
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
+}
+
+.search-input::placeholder {
+  color: var(--text-muted);
+}
+
+/* ========== USER DROPDOWN ========== */
+
+.dropdown {
+  position: relative;
+  cursor: pointer;
+}
+
+.dropdown-menu {
+  position: absolute;
+  right: 0;
+  top: 120%;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  min-width: 140px;
+  display: none;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  z-index: 100;
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 10px 14px;
+  text-decoration: none;
+  color: var(--text-main);
+  font-size: 14px;
+}
+
+.dropdown-menu a:hover {
+  background-color: #020617;
+  color: var(--color-danger);
+}

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Admin Dashboard</title>
+
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+
+<div class="admin-layout">
+
+  <!-- ========== SIDEBAR ========== -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      🛡️ <span>Cyber</span>Monitor
+    </div>
+    <ul class="sidebar-menu">
+      <li><a href="dashboard.html" class="active">Dashboard</a></li>
+      <li><a href="users.html">Users</a></li>
+      <li><a href="attack-events.html">Attack Events</a></li>
+      <li><a href="blocked-ips.html">Blocked IPs</a></li>
+      <li><a href="logs.html">Logs</a></li>
+      <li><a href="reports.html">Reports</a></li>
+    </ul>
+  </aside>
+
+  <!-- ========== MAIN CONTENT ========== -->
+  <div class="main-content">
+
+    <!-- ========== TOPBAR ========== -->
+    <header class="topbar">
+      <h1>Dashboard</h1>
+
+      <div class="topbar-right">
+        <div class="topbar-user dropdown">
+          <span id="userMenuBtn">Admin ⌄</span>
+
+          <div class="dropdown-menu" id="userDropdown">
+            <a href="#" onclick="logout()">🚪 Logout</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- ========== PAGE CONTENT ========== -->
+    <div class="page-content">
+
+      <!-- ========== STATS CARDS ========== -->
+      <div class="stats-grid">
+        <div class="card stat-card">
+          <div class="stat-title">Recent Alerts</div>
+          <div class="stat-value danger">5</div>
+        </div>
+
+        <div class="card stat-card">
+          <div class="stat-title">Active Threats</div>
+          <div class="stat-value success">2</div>
+        </div>
+
+        <div class="card stat-card">
+          <div class="stat-title">Blocked IPs</div>
+          <div class="stat-value">3</div>
+        </div>
+      </div>
+
+      <!-- ========== RECENT EVENTS TABLE ========== -->
+      <div class="card">
+        <h3 style="margin-bottom:16px;">Recent Events</h3>
+
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Time</th>
+              <th>IP Address</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>19:00</td>
+              <td>153.196.1.101</td>
+              <td><span class="badge badge-danger">Alert</span></td>
+            </tr>
+            <tr>
+              <td>19:05</td>
+              <td>153.196.1.100</td>
+              <td><span class="badge badge-success">Safe</span></td>
+            </tr>
+            <tr>
+              <td>19:10</td>
+              <td>153.196.1.102</td>
+              <td><span class="badge badge-danger">Alert</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- ========== CHART ========== -->
+      <div class="card" style="margin-top:24px;">
+        <h3 style="margin-bottom:16px;">Attack Activity</h3>
+        <canvas id="attackChart" height="120"></canvas>
+      </div>
+
+    </div> <!-- page-content -->
+
+  </div> <!-- main-content -->
+
+</div> <!-- admin-layout -->
+
+<!-- ========== CHART SCRIPT ========== -->
+<script>
+  const canvas = document.getElementById("attackChart");
+  const ctx = canvas.getContext("2d");
+
+  const data = [2, 5, 3, 6, 4, 7, 5];
+  const max = Math.max(...data);
+
+  const width = canvas.width;
+  const height = canvas.height;
+  const gap = width / (data.length - 1);
+
+  ctx.strokeStyle = "#2563EB";
+  ctx.lineWidth = 3;
+  ctx.beginPath();
+
+  data.forEach((value, index) => {
+    const x = index * gap;
+    const y = height - (value / max) * height;
+    if (index === 0) ctx.moveTo(x, y);
+    else ctx.lineTo(x, y);
+  });
+
+  ctx.stroke();
+</script>
+
+<script src="../js/ui.js"></script>
+</body>
+</html>
