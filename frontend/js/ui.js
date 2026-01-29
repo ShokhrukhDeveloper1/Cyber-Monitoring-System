@@ -70,5 +70,5 @@ document.addEventListener("click", (e) => {
 // ===== LOGOUT =====
 function logout() {
   // hozircha fake logout
-  window.location.href = "../index.html";
+  window.location.href = "../Login.html";
 }
